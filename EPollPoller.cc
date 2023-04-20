@@ -89,7 +89,7 @@ void EPollPoller::updateChannel(Channel *channel)
     }
 }
 
-// deleted channelfrom poller 
+// deleted channel from poller 
 void EPollPoller::removeChannel(Channel *channel)
 {
     int fd = channel->fd();
@@ -112,7 +112,7 @@ void EPollPoller::fillActiveChannels(int numEvents, ChannelList *activeChannels)
     {
         Channel *channel = static_cast<Channel *>(events_[i].data.ptr);
         channel->set_revents(events_[i].events);
-        activeChannels->push_back(channel); // EventLoop就拿到了它的poller给它返回的所有发生事件的channel列表了
+        activeChannels->push_back(channel); // the eventloop have already get listof all events that poller returned
     }
 }
 
