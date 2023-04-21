@@ -2,6 +2,8 @@
 
 #include "noncopyable.h"
 #include <functional>
+#include "Socket.h"
+#include "Channel.h"
 
 class EventLoop;
 class InetAddress;
@@ -22,7 +24,11 @@ public:
     void listen();
 
 private:
+    void handleRead();
+    
     EventLoop *loop; // mainloop
     NewConnectionCallback newConnectionCallback_;
     bool listenning_; // 是否正在监听中
+    Socket acceptSocket_;
+    Channel acceptChannel_;
 };
